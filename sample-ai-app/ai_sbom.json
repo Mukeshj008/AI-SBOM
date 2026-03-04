@@ -1,0 +1,137 @@
+{
+    "ai_sdks": [
+        {
+            "name": "@langchain/openai",
+            "instances": 2,
+            "source_files": [
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/src/index.ts",
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/app.py"
+            ],
+            "detection_methods": [
+                "text_pattern"
+            ]
+        },
+        {
+            "name": "@xenova/transformers",
+            "instances": 1,
+            "source_files": [
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/app.py"
+            ],
+            "detection_methods": [
+                "text_pattern"
+            ]
+        },
+        {
+            "name": "openai",
+            "instances": 7,
+            "source_files": [
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/app.py",
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/requirements.txt",
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/package.json",
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/src/index.ts"
+            ],
+            "versions": [
+                "1.40.0",
+                "4.55.0"
+            ],
+            "detection_methods": [
+                "text_pattern"
+            ]
+        },
+        {
+            "name": "OPENAI_API_KEY",
+            "instances": 1,
+            "source_files": [
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/src/index.ts"
+            ],
+            "detection_methods": [
+                "env_hint"
+            ]
+        },
+        {
+            "name": "pinecone",
+            "instances": 2,
+            "source_files": [
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/package.json",
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/src/index.ts"
+            ],
+            "versions": [
+                "3.0.2"
+            ],
+            "detection_methods": [
+                "text_pattern"
+            ]
+        },
+        {
+            "name": "transformers",
+            "instances": 3,
+            "source_files": [
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/app.py",
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/requirements.txt"
+            ],
+            "versions": [
+                "4.44.0"
+            ],
+            "detection_methods": [
+                "text_pattern"
+            ]
+        }
+    ],
+    "llm_models": [
+        {
+            "model": "gpt-4.1-mini",
+            "instances": 1,
+            "source_files": [
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/src/index.ts"
+            ]
+        },
+        {
+            "model": "gpt-4o-mini",
+            "instances": 1,
+            "source_files": [
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/app.py"
+            ]
+        }
+    ],
+    "local_models": [],
+    "vector_dbs": [
+        {
+            "name": "pinecone",
+            "instances": 5,
+            "source_files": [
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/package.json",
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/src/index.ts",
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/app.py",
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/requirements.txt"
+            ],
+            "versions": [
+                "3.0.2"
+            ]
+        }
+    ],
+    "ai_endpoints": [
+        {
+            "endpoint": "api.openai.com",
+            "instances": 1,
+            "source_files": [
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/app.py"
+            ]
+        }
+    ],
+    "risks": [
+        {
+            "risk": "hardcoded_openai_key",
+            "instances": 1,
+            "source_files": [
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/app.py"
+            ]
+        },
+        {
+            "risk": "pickle_load",
+            "instances": 1,
+            "source_files": [
+                "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-app/app.py"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,88 @@
+{
+    "ai_sdks": [
+        {
+            "name": "com.openai",
+            "version": "unknown",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/pom.xml"
+        },
+        {
+            "name": "openai-java",
+            "version": "unknown",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/pom.xml"
+        },
+        {
+            "name": "com.openai:openai-java",
+            "version": "unknown",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/pom.xml"
+        },
+        {
+            "name": "dev.langchain4j",
+            "version": "unknown",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/pom.xml"
+        },
+        {
+            "name": "dev.langchain4j:langchain4j-open-ai",
+            "version": "unknown",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/pom.xml"
+        },
+        {
+            "name": "com.openai",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/src/main/java/com/example/App.java",
+            "detection_method": "text_pattern"
+        },
+        {
+            "name": "dev.langchain4j",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/src/main/java/com/example/App.java",
+            "detection_method": "text_pattern"
+        },
+        {
+            "name": "OPENAI_API_KEY",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/src/main/java/com/example/App.java",
+            "detection_method": "env_hint"
+        },
+        {
+            "name": "openai-java",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/pom.xml",
+            "detection_method": "text_pattern"
+        },
+        {
+            "name": "theokanning/openai-java",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/pom.xml",
+            "detection_method": "text_pattern"
+        },
+        {
+            "name": "com.openai",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/pom.xml",
+            "detection_method": "text_pattern"
+        },
+        {
+            "name": "dev.langchain4j",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/pom.xml",
+            "detection_method": "text_pattern"
+        }
+    ],
+    "llm_models": [
+        {
+            "model": "gpt-4o-mini",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/src/main/java/com/example/App.java"
+        }
+    ],
+    "local_models": [],
+    "vector_dbs": [
+        {
+            "name": "pinecone",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/src/main/java/com/example/App.java"
+        },
+        {
+            "name": "pinecone",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/pom.xml"
+        }
+    ],
+    "ai_endpoints": [
+        {
+            "endpoint": "api.openai.com",
+            "source_file": "/Users/mukeshchaudhari/Desktop/scripts/AI-SBOM/sample-ai-java/src/main/java/com/example/App.java"
+        }
+    ],
+    "risks": []
+}

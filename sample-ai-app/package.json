@@ -1,0 +1,9 @@
+{
+  "name": "sample-ai-app",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "@openai/openai": "^4.55.0",
+    "@pinecone-database/pinecone": "^3.0.2"
+  }
+}
