@@ -1138,6 +1138,8 @@ def write_html_report(results, output_path, project_path):
     section_counts = {section: len(results.get(section, [])) for section in sections}
     total_findings = sum(section_counts.values())
     project_root = project_path.resolve()
+    project_name = project_root.name or str(project_root)
+    report_title = f"AI-SBOM report for {project_name}"
 
     def _to_display_path(value):
         try:
@@ -1240,7 +1242,7 @@ def write_html_report(results, output_path, project_path):
     html_doc = (
         "<!doctype html>"
         "<html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
-        "<title>AI SBOM Report</title>"
+        f"<title>{html.escape(report_title)}</title>"
         "<style>"
         ":root{--bg:#f0f4ff;--text:#111827;--muted:#64748b;--card:#ffffff;--line:#dbe3f4;--header:#0b1020;}"
         "*{box-sizing:border-box;}"
@@ -1291,7 +1293,7 @@ def write_html_report(results, output_path, project_path):
         "</style></head><body>"
         "<div class=\"container\">"
         "<div class=\"hero\">"
-        "<h1>AI SBOM Report</h1>"
+        f"<h1>{html.escape(report_title)}</h1>"
         f"<p class=\"meta\">Project: {html.escape(str(project_path.resolve()))}</p>"
         f"<p class=\"meta\">Generated at: {html.escape(generated_at)}</p>"
         f"<p class=\"totals\">Total findings: <strong>{total_findings}</strong></p>"

@@ -993,8 +993,26 @@ class Handler(BaseHTTPRequestHandler):
                     ORDER BY total_instances DESC, f.entity
                     """
                 ).fetchall()
+            detail_rows = conn.execute(
+                """
+                SELECT f.category, f.entity, p.name AS project_name, f.source_files_json
+                FROM findings f
+                JOIN scans s ON s.id = f.scan_id
+                JOIN projects p ON p.id = s.project_id
+                ORDER BY f.category, f.entity
+                """
+            ).fetchall()
         finally:
             conn.close()
+        details_by_key = {}
+        for d in detail_rows:
+            key = (str(d["category"]), str(d["entity"]))
+            bucket = details_by_key.setdefault(key, {"projects": set(), "files": set()})
+            if d["project_name"]:
+                bucket["projects"].add(str(d["project_name"]))
+            source_files = json.loads(d["source_files_json"]) if d["source_files_json"] else []
+            for path in source_files:
+                bucket["files"].add(str(path))
         if q:
             rows = [r for r in rows if q in str(r["entity"]).lower()]
         filters = (
@@ -1016,6 +1034,15 @@ class Handler(BaseHTTPRequestHandler):
         for r in rows:
             delete_btn = ""
             cat_class = category_css_class(r["category"])
+            detail = details_by_key.get((str(r["category"]), str(r["entity"])), {"projects": set(), "files": set()})
+            project_list = sorted(detail["projects"])
+            source_file_list = sorted(detail["files"])
+            projects_html = "".join(f"<span class='pill'>{html.escape(name)}</span>" for name in project_list[:4])
+            if len(project_list) > 4:
+                projects_html += f"<span class='pill'>+{len(project_list)-4} more</span>"
+            files_html = "".join(f"<span class='pill'>{html.escape(path)}</span>" for path in source_file_list[:6])
+            if len(source_file_list) > 6:
+                files_html += f"<span class='pill'>+{len(source_file_list)-6} more</span>"
             if user.get("role") == "admin":
                 delete_btn = (
                     "<form method='post' action='/delete/component' "
@@ -1032,6 +1059,8 @@ class Handler(BaseHTTPRequestHandler):
                 f"<td><a href='/instances?{urlencode({'category': r['category'], 'entity': r['entity']})}'>{r['total_instances']}</a></td>"
                 f"<td>{r['projects_count']}</td>"
                 f"<td>{r['scans_count']}</td>"
+                f"<td>{projects_html or '<span class=\"muted\">-</span>'}</td>"
+                f"<td>{files_html or '<span class=\"muted\">-</span>'}</td>"
                 f"<td>{delete_btn}</td>"
                 "</tr>"
             )
@@ -1040,8 +1069,8 @@ class Handler(BaseHTTPRequestHandler):
             + f"<div class='card'><div class='stats'>{''.join(stats)}</div></div>"
             + build_pie_chart_html("Component-wise Findings (total instances)", chart_items)
             + "<div class='card'><h3>All Components</h3>"
-            + "<table><thead><tr><th>Category</th><th>Entity</th><th>Total Instances</th><th>Projects</th><th>Scans</th><th>Actions</th></tr></thead>"
-            + f"<tbody>{''.join(rows_html) or '<tr><td colspan=6>No components found.</td></tr>'}</tbody></table></div>"
+            + "<table><thead><tr><th>Category</th><th>Entity</th><th>Total Instances</th><th>Projects</th><th>Scans</th><th>Project Names</th><th>Source Files</th><th>Actions</th></tr></thead>"
+            + f"<tbody>{''.join(rows_html) or '<tr><td colspan=8>No components found.</td></tr>'}</tbody></table></div>"
         )
         self._send_html(page_template("All Components", body, user=user))
 
