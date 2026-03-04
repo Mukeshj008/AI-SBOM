@@ -1,0 +1,5 @@
+# AI-SBOM runtime uses Python standard library only.
+# No third-party pip packages are required for default operation.
+#
+# Optional:
+# - Install Ollama separately from https://ollama.com for --ollama mode.
